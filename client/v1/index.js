@@ -93,8 +93,14 @@ console.log(brands_name.length)
 // 2. Create a variable and assign it the list of products by price from lowest to highest
 // 3. Log the variable
 console.log('TODO 4')
-function sort_by_price(name){
- let tab = name.sort((a, b) => a.price - b.price)
+function sort_by_price(name, sens){
+  let tab = []
+ if(sens == 'croissant'){
+  tab = name.sort((a, b) => a.price - b.price)
+ }
+ else if(sens == 'decroissant'){
+  tab = name.sort((a, b) => b.price - a.price)
+ }
  return tab
 }
 const Marketplace_sorted_price = sort_by_price(marketplace)
@@ -105,8 +111,14 @@ console.table(Marketplace_sorted_price)
 // 2. Create a variable and assign it the list of products by date from recent to old
 // 3. Log the variable
 console.log('TODO 5')
-function sort_by_date(name){
-  let tab = name.sort((a, b) => Date.parse(b.released) - Date.parse(a.released))
+function sort_by_date(name, sens){
+  let tab = []
+  if(sens = 'croissant'){
+    tab = name.sort((a, b) => Date.parse(a.released) - Date.parse(b.released))
+  }
+  else if(sens = 'decroissant'){
+    tab = name.sort((a, b) => Date.parse(b.released) - Date.parse(a.released))
+  }
   return tab
  }
  const Marketplace_sorted_date = sort_by_date(marketplace)
@@ -132,12 +144,16 @@ function filter_by_price(name){
 // 1. Determine the average price of the marketplace
 // 2. Log the average
 console.log('TODO 7')
-let sum = 0
-for(let i of marketplace){
-  sum += i.price
+
+function moyenne(name){
+  let sum = 0
+  for(let i = 0; i< name.length; i++){
+    sum += name[i].price
+  }
+  const len = name.length
+  return sum/len
 }
-const len = marketplace.length
-const average = sum/len
+let average = moyenne(marketplace)
 console.log(average)
 
 /**
@@ -162,15 +178,55 @@ console.log(average)
 //
 // 2. Log the variable
 // 3. Log the number of products by brands
+console.log('TODO 8')
+function product_by_brands(name, marketplace){
+  let tab = []
+  for(let e of marketplace){
+    if(e.brand === name){
+      tab.push(e)
+    }
+  }
+  return tab
+}
+
+function product_by_b(brands_name, marketplace){
+  let brands = new Object()
+  for(let e of brands_name){
+    brands[e] = product_by_brands(e, marketplace)
+  }
+  return brands
+}
+
+let brands = product_by_b(brands_name, marketplace)
+console.table(brands)
+console.log(brands[0])
+
 
 // 🎯 TODO 9: Sort by price for each brand
 // 1. For each brand, sort the products by price, from highest to lowest
 // 2. Log the sort
+console.log('TODO 9')
+function sort_brand_price(brands, brands_name){
+  for(let e of brands_name){
+    sort_by_price(brands[e], 'decroissant')
+  }
+  return brands
+}
+let brands_sorted_p = sort_brand_price(brands,brands_name)
+console.table(brands_sorted_p)
 
 // 🎯 TODO 10: Sort by date for each brand
 // 1. For each brand, sort the products by date, from old to recent
 // 2. Log the sort
-
+console.log('TODO 10')
+function sort_brand_date(brands, brands_name){
+  for(let e of brands_name){
+    sort_by_date(brands[e], 'croissant')
+  }
+  return brands
+}
+let brands_sorted_d = sort_brand_date(brands,brands_name)
+console.table(brands_sorted_d)
 /**
  * 💶
  * Let's talk about money now
@@ -181,7 +237,27 @@ console.log(average)
 // 🎯 TODO 11: Compute the p90 price value
 // 1. Compute the p90 price value of each brand
 // The p90 value (90th percentile) is the lower value expected to be exceeded in 90% of the products
+console.log('TODO 11')
 
+function ecart_type(name){
+  const moy = moyenne(name)
+  let sum = 0
+  for(let e of name){
+    sum += (e.price - moy)**2
+  }
+  return Math.sqrt(sum/name.length)
+}
+
+function p90(brands, brands_name){
+  let p = []
+  for(let e of brands_name){
+    p[e] = moyenne(brands[e]) + 1.28 * ecart_type(brands[e])
+  }
+  return p
+}
+
+console.table(p90(brands, brands_name))
+//console.table(p90_brands)
 /**
  * 🧥
  * Cool for your effort.
