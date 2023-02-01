@@ -449,21 +449,61 @@ const COTELE_PARIS = [
 // 🎯 TODO 1: New released products
 // // 1. Log if we have new products only (true or false)
 // // A new product is a product `released` less than 2 weeks.
+console.log('TODO 1')
+
+let resultat1 = false
+let two= new Date();
+two.setDate(two.getDate()-14)
+
+for(let e of COTELE_PARIS){
+  if(Date.parse(e.released) > two){
+    resultat1 = true
+  }
+}
+console.log(resultat1)
 
 // 🎯 TODO 2: Reasonable price
 // // 1. Log if coteleparis is a reasonable price shop (true or false)
 // // A reasonable price if all the products are less than 100€
+console.log('TODO 2')
+
+let resultat2 = true
+
+for(let e of COTELE_PARIS){
+  if(e.price > 100){
+    resultat2 = false
+  }
+}
+console.log(resultat2)
+
 
 // 🎯 TODO 3: Find a specific product
 // 1. Find the product with the uuid `2b9a47e3-ed73-52f6-8b91-379e9c8e526c`
 // 2. Log the product
+console.log('TODO 3')
+for(let e of COTELE_PARIS){
+  if(e.uuid == '2b9a47e3-ed73-52f6-8b91-379e9c8e526c'){
+    console.table(e)
+  }
+}
 
 // 🎯 TODO 4: Delete a specific product
 // 1. Delete the product with the uuid `2b9a47e3-ed73-52f6-8b91-379e9c8e526c`
 // 2. Log the new list of product
+console.log('TODO 4');
+let COTELE_PARIS2 = [];
+
+for(let i = 0; i < COTELE_PARIS.length; i++){
+    if(COTELE_PARIS[i].uuid != '2b9a47e3-ed73-52f6-8b91-379e9c8e526c'){
+      COTELE_PARIS2.push(COTELE_PARIS[i])
+    }
+  }
+
+console.table(COTELE_PARIS2);
 
 // 🎯 TODO 5: Save the favorite product
 // We declare and assign a variable called `blueJacket`
+console.log('TODO 5');
 let blueJacket = {
   'link':
     'https://coteleparis.com/collections/homme/products/veste-cotele-navy?_pos=8&_fid=2fee5844b&_ss=c&variant=42801558585574?variant=42801558585574&tag=homme',
@@ -483,7 +523,9 @@ let jacket = blueJacket;
 jacket.favorite = true;
 
 // 1. Log `blueJacket` and `jacket` variables
-// 2. What do you notice?
+// 2. What do you notice? -> Quand on modifie Jacket ça modifie blueJacket
+console.log(blueJacket);
+console.log(jacket);
 
 // we make a new assignment again
 blueJacket = {
@@ -499,6 +541,12 @@ blueJacket = {
 };
 
 // 3. Update `jacket` property with `favorite` to true WITHOUT changing blueJacket properties
+let Jacket = {...blueJacket};
+
+Jacket.favorite = true;
+console.log(blueJacket);
+console.log(Jacket)
+
 
 /**
  * 🎬
@@ -509,3 +557,8 @@ blueJacket = {
 // 🎯 LAST TODO: Save in localStorage
 // 1. Save MY_FAVORITE_BRANDS in the localStorage
 // 2. log the localStorage
+console.log('LAST TODO');
+
+let mfb = JSON.stringify(MY_FAVORITE_BRANDS);
+localStorage.setItem("obj",mfb);
+console.log(localStorage);
