@@ -36,6 +36,10 @@ const setCurrentProducts = ({result, meta}) => {
   currentProducts = result;
   currentPagination = meta;
 };
+const setCurrentPage = ({result, meta}) => {
+  currentProducts = result;
+  currentPagination = meta;
+};
 
 /**
  * Fetch products from api
@@ -136,5 +140,22 @@ document.addEventListener('DOMContentLoaded', async () => {
   const products = await fetchProducts();
 
   setCurrentProducts(products);
+  render(currentProducts, currentPagination);
+});
+
+/**
+ * Select the page
+ */
+selectPage.addEventListener('change', async (event) => {
+  const page = await fetchProducts(parseInt(event.target.value), currentProducts.currentProd);
+
+  setCurrentPage(page);
+  render(currentProducts, currentPagination);
+});
+
+document.addEventListener('DOMContentLoaded', async () => {
+  const page = await fetchProducts();
+
+  setCurrentPage(page);
   render(currentProducts, currentPagination);
 });
