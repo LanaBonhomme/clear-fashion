@@ -3,70 +3,66 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>👕 Clear Fahion | Environmentally & human-friendly clothes</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1>Clear fashion</h1>
-    <section id="options">
-      <div id="show">
-        <label for="show-select">Show:</label>
-        <select name="show" id="show-select">
-          <option value="12">12</option>
-          <option value="24">24</option>
-          <option value="48">48</option>
-        </select>
-      </div>
-      <div id="page">
-        <label for="page-select">Go to page:</label>
-        <select name="page" id="page-select"> </select>
-      </div>
-      <div id="filters">
-        <span>By reasonable price</span>
-        <span>By recently released</span>
+    <img src="logo.png" alt="Logo Clear Fashion"/>
+    <div class = "header" id="myHeader">
+      <section id="options">
+        <div id="show">
+          <label for="show-select">Show :</label>
+          <select name="show" id="show-select">
+            <option value="12">12</option>
+            <option value="24">24</option>
+            <option value="48">48</option>
+          </select>
+        </div>
+        <div id="page">
+          <label for="page-select">Page :</label>
+          <select name="page" id="page-select"> </select>
+        </div>
         <div id="brand">
-          <label for="brand-select">By brands:</label>
+          <label for="brand-select">Brands :</label>
           <select name="brand" id="brand-select"> </select>
         </div>
-      </div>
-      <div id="sort">
-        <label for="sort-select">Sort:</label>
-        <select name="sort" id="sort-select">
-          <option value="price-asc">Cheaper</option>
-          <option value="price-desc">Expensive</option>
-          <option value="date-asc">Recently released</option>
-          <option value="date-desc">Anciently released</option>
-        </select>
-      </div>
-    </section>
+        <div id="sort">
+          <label for="sort-select">Sort :</label>
+          <select name="sort" id="sort-select">
+            <option value="price-asc">Cheaper</option>
+            <option value="price-desc">Expensive</option>
+            <option value="date-asc">Recently released</option>
+            <option value="date-desc">Anciently released</option>
+          </select>
+        </div>
+        <div id="filters">
+          <div id="crp">
+            <input type="checkbox" id="Click_reasonable_price">Reasonable price</input>
+          </div>
+          <div id="rr">
+            <input type="checkbox" id="Click_recent_released">Recently released</input>
+          </div>
+          <div id="cf">
+            <input type="checkbox" id="Click-favorite">❤️</input>
+          </div>
+        </div>
+      </section>
+    </div>
     <section id="indicators">
-      <h2>Indicators</h2>
-      <div>
-        <span>Number of products</span>
-        <span id="nbProducts">0</span>
-      </div>
-      <div>
-        <span>Number of brands</span>
-        <span id="nbBrands">0</span>
-      </div>
-      <div>
-        <span>Number of new products</span>
-        <span>0</span>
-      </div>
-      <div>
-        <span>p50 price value</span>
-        <span>0</span>
-      </div>
-      <div>
-        <span>p90 price value</span>
-        <span>0</span>
-      </div>
-      <div>
-        <span>p95 price value</span>
-        <span>0</span>
-      </div>
-      <div>
-        <span>Last released date</span>
-        <span>2020-01-01</span>
-      </div>
+      <nav>
+        <ul>
+          <li class="deroulant"><a href="#">Indicators</a>
+            <ul class="sous">
+              <li><a href="#"><span id="nbProducts">0</span>   Products</a></li>
+              <li><a href="#"><span id="nbBrands">0</span>  Brands</a></li>
+              <li><a href="#"><span id="nbRecentProducts"></span>   New Products</a></li>
+              <li><a href="#">P50 price value <span id="P50">0</span></a></li>
+              <li><a href="#">P90 price value <span id="P90">0</span></a></li>
+              <li><a href="#">P95 price value <span id="P95">0</span></a></li>
+              <li><a href="#">Last released date <span id="LastReleased">2020-01-01</span></a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
     </section>
     <section id="products"></section>
     <script type="text/javascript" charset="UTF-8" src="portfolio.js"></script>

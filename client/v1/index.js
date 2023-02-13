@@ -462,6 +462,18 @@ for(let e of COTELE_PARIS){
 }
 console.log(resultat1)
 
+function date_inf_less2weeks(data){
+  let two = new Date();
+  let n_data = [];
+  two.setDate(two.getDate()-14)
+  for(let e of data){
+    if(Date.parse(e.released) > two){
+      n_data.push(e);
+    }
+  }
+  return n_data;
+}
+
 // 🎯 TODO 2: Reasonable price
 // // 1. Log if coteleparis is a reasonable price shop (true or false)
 // // A reasonable price if all the products are less than 100€
