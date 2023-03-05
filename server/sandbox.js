@@ -3,6 +3,7 @@ const dedicatedbrand = require('./eshops/dedicatedbrand');
 const montlimartbrand = require('./eshops/montlimartbrand');
 const circlesportswear = require('./eshops/circlesportswearbrand');
 
+
 const link = [
   "https://shop.circlesportswear.com/collections/all", //tout le site
   "https://www.montlimart.com/99-vetements", //tout le site
@@ -61,7 +62,14 @@ async function sandbox (eshop = undefined, number = -1) {
     }
   }
 }
+const client = await MongoClient.connect(MONGODB_URI, {'useNewUrlParser': true});
+const db =  client.db(MONGODB_DB_NAME)
 
 const [,, eshop] = process.argv;
 
 sandbox(eshop);
+
+const collection = db.collection('products');
+const result = collection.insertMany(products);
+
+console.log(result);
