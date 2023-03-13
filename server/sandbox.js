@@ -3,12 +3,9 @@ const dedicatedbrand = require('./eshops/dedicatedbrand');
 const montlimartbrand = require('./eshops/montlimartbrand');
 const circlesportswear = require('./eshops/circlesportswearbrand');
 
-
 const link = [
   "https://shop.circlesportswear.com/collections/all", //tout le site
-  "https://www.montlimart.com/99-vetements", //tout le site
-  "https://www.montlimart.com/14-chaussures",
-  "https://www.montlimart.com/15-accessoires",
+  "montlimart",//tout le site
   "dedicatedbrand"//tout le site
 ]
 
@@ -21,7 +18,7 @@ async function sandbox (eshop = undefined, number = -1) {
       allProducts.push(...await sandbox(link[i], i));
     }
     const fs = require('fs');
- 
+    allProducts = allProducts.filter((v,i,a)=>a.findIndex(t=>(t.uuid === v.uuid))===i);//suppression des doublons
     let data = JSON.stringify(allProducts);
     fs.writeFileSync('products.json', data);
     console.log("Products in the json file: " + allProducts.length);
@@ -30,9 +27,12 @@ async function sandbox (eshop = undefined, number = -1) {
   else
   {
     try {
-      console.log(`🕵️‍♀️  browsing ${eshop} eshop`);
       var products = "";
-      if(eshop.includes('montlimart')){
+      if(eshop == 'montlimart'){
+        link.push(...await montlimartbrand.getLinks());
+        return [];
+      }
+      else if(eshop.includes('montlimart')){
         products = await montlimartbrand.scrape(eshop);
       }
       else if(eshop == 'dedicatedbrand'){
@@ -49,6 +49,7 @@ async function sandbox (eshop = undefined, number = -1) {
         console.log('eshop not found');
         process.exit(1);
       }
+      console.log(`🕵️‍♀️  browsing ${eshop} eshop`);
       console.log(products);
       console.log('done ' + products.length + ' products found');
       if(number == -1)
@@ -62,14 +63,7 @@ async function sandbox (eshop = undefined, number = -1) {
     }
   }
 }
-const client = await MongoClient.connect(MONGODB_URI, {'useNewUrlParser': true});
-const db =  client.db(MONGODB_DB_NAME)
 
 const [,, eshop] = process.argv;
 
 sandbox(eshop);
-
-const collection = db.collection('products');
-const result = collection.insertMany(products);
-
-console.log(result);
