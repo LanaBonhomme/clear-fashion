@@ -84,6 +84,6 @@ app.get('/brands', async (request, response) => {
   response.send(body);
 });
 
-app.listen(PORT);
+app.listen(process.env.PORT || 8092, () => console.log(`Server started on port ${process.env.PORT || 8092}`));
 
 console.log(`📡 Running on port ${PORT}`);
