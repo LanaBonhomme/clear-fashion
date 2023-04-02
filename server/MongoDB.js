@@ -4,7 +4,7 @@ const fs = require('fs');
 
 
 
-var auth = fs.readFileSync("C:/Users/bonho/OneDrive/Bureau/A4/S2/Web_Application_Architectures/clear-fashion/server/auth.json");
+var auth = fs.readFileSync("./auth.json");
 const sandbox = require('./sandbox');
 
 var MONGODB_URI = "";
