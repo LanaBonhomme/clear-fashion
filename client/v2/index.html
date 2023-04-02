@@ -3,14 +3,14 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>👕 Clear Fahion | Environmentally & human-friendly clothes</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css" />
   </head>
   <body>
-    <img src="logo.png" alt="Logo Clear Fashion"/>
+    <img class="img_en_tete" src="logo.png" alt="Logo Clear Fashion"/>
     <div class = "header" id="myHeader">
       <section id="options">
         <div id="show">
-          <label for="show-select">Show :</label>
+          <label for="show-select">Show:</label>
           <select name="show" id="show-select">
             <option value="12">12</option>
             <option value="24">24</option>
@@ -18,15 +18,15 @@
           </select>
         </div>
         <div id="page">
-          <label for="page-select">Page :</label>
-          <select name="page" id="page-select"> </select>
+          <label for="page-select">Page:</label>
+          <select name="page" id="page-select"></select>
         </div>
         <div id="brand">
-          <label for="brand-select">Brands :</label>
-          <select name="brand" id="brand-select"> </select>
+          <label for="brand-select">Brand:</label>
+          <select name="brand" id="brand-select"></select>
         </div>
         <div id="sort">
-          <label for="sort-select">Sort :</label>
+          <label for="sort-select">Sort:</label>
           <select name="sort" id="sort-select">
             <option value="price-asc">Cheaper</option>
             <option value="price-desc">Expensive</option>
@@ -36,14 +36,12 @@
         </div>
         <div id="filters">
           <div id="crp">
-            <input type="checkbox" id="Click_reasonable_price">Reasonable price</input>
+            <input type="checkbox" id="showOnly-select-sale">Reasonable price</input>
           </div>
           <div id="rr">
-            <input type="checkbox" id="Click_recent_released">Recently released</input>
+            <input type="checkbox" id="showOnly-select-new">Recently released</input>
           </div>
-          <div id="cf">
-            <input type="checkbox" id="Click-favorite">❤️</input>
-          </div>
+          <div id="showOnly-select-favorite" onclick="changeFavorites()">❤️</div>
         </div>
       </section>
     </div>
@@ -64,7 +62,17 @@
         </ul>
       </nav>
     </section>
+    <br>
     <section id="products"></section>
+    <script>
+      function loadInfo()
+      {
+      if(document.getElementById("products").innerHTML == ""){
+        document.getElementById("products").innerHTML = "First load, please wait...";
+      }
+    }
+    setTimeout(loadInfo, 200);
+    </script>
     <script type="text/javascript" charset="UTF-8" src="portfolio.js"></script>
   </body>
 </html>
