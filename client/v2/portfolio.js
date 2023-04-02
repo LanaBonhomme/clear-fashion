@@ -57,7 +57,7 @@ const setCurrentProducts = ({result, meta}) => {
 const fetchProducts = async (page = 1, size = 12, brand = "all", sort = "price-asc", filter = [false, false, false]) => {
   try {
     const response = await fetch(
-      `https://clear-fashion-api.vercel.app?size=999` + (brand !== "all" ? `&brand=${brand}` : "")
+      `https://clear-fashion-theta-seven.vercel.app/?size=999` + (brand !== "all" ? `&brand=${brand}` : "")
     );
     const body = await response.json();
 
@@ -143,7 +143,7 @@ const fetchProducts = async (page = 1, size = 12, brand = "all", sort = "price-a
 async function fetchBrands() {
   try {
     const response = await fetch(
-      'https://clear-fashion-api.vercel.app/brands'
+      'https://clear-fashion-theta-seven.vercel.app/brands'
     );
     const body = await response.json();
 
