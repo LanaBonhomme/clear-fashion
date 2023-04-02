@@ -1,18 +1,18 @@
 const { connect } = require('http2');
 const {MongoClient} = require('mongodb');
-const fs = require('fs');
+//const fs = require('fs');
 
 
 
-var auth = fs.readFileSync("./auth.json");
+//var auth = fs.readFileSync("./auth");
 const sandbox = require('./sandbox');
 
 var MONGODB_URI = "";
 const MONGODB_DB_NAME = 'clearfashion';
 var client, db, collection;
 
-auth = JSON.parse(auth);
-MONGODB_URI = auth.MONGODB_URI;
+//auth = JSON.parse(auth);
+MONGODB_URI = "mongodb+srv://user_A4:LANA@cluster1.l9unbmn.mongodb.net/test";
 
 async function connectMongoDb(connexion = "none"){
     
