@@ -66,4 +66,4 @@ async function sandbox (eshop = undefined, number = -1) {
 
 const [,, eshop] = process.argv;
 
-sandbox(eshop);
+module.exports = {sandbox};
